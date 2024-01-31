@@ -1,0 +1,13 @@
+package edu.tomerbu.blogfinalproject2024;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class BlogFinalProject2024ApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
