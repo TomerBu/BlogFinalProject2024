@@ -12,7 +12,12 @@ import java.util.Collection;
 @AllArgsConstructor
 @Builder
 public class PostListDto {
+    private long totalPosts;
+    private int pageNo;
+    private int pageSize;
+    private int totalPages;
 
-    //pageSize... etc
+    private boolean isFirst;
+    private boolean isLast;
     private Collection<PostResponseDTO> posts;
 }

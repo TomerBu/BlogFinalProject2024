@@ -20,8 +20,18 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public ResponseEntity<PostListDto> getAllPosts() {
-        return ResponseEntity.ok(postService.getAllPosts());
+    //GET /api/v1/posts?pageNo=3&pageSize=25&sortDir=asc&sortBy=title
+    //GET /api/v1/posts?pageNo=3&pageSize=25&sortDir=asc
+    //GET /api/v1/posts?pageNo=3&pageSize=25
+    //GET /api/v1/posts?pageNo=3
+    //GET /api/v1/posts
+    public ResponseEntity<PostListDto> getAllPosts(
+            @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
+            @RequestParam(value = "sortDir", required = false, defaultValue = "desc") String sortDir,
+            @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy
+    ) {
+        return ResponseEntity.ok(postService.getAllPosts(pageNo, pageSize, sortDir, sortBy));
     }
 
     @GetMapping("/{id}")
@@ -46,5 +56,10 @@ public class PostController {
 
         var uri = uriBuilder.path("/api/v1/posts/{id}").buildAndExpand(res.getId()).toUri();
         return ResponseEntity.created(uri).body(res);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<PostResponseDTO> deletePost(@PathVariable long id){
+        return ResponseEntity.ok(postService.deletePost(id));
     }
 }
