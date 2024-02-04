@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/api/v1/posts")
@@ -29,7 +30,7 @@ public class PostController {
             @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
             @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize,
             @RequestParam(value = "sortDir", required = false, defaultValue = "desc") String sortDir,
-            @RequestParam(value = "sortBy", required = false, defaultValue = "id") String sortBy
+            @RequestParam(value = "sortBy", required = false, defaultValue = "id") String... sortBy
     ) {
         return ResponseEntity.ok(postService.getAllPosts(pageNo, pageSize, sortDir, sortBy));
     }

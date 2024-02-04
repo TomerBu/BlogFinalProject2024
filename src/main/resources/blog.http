@@ -58,7 +58,7 @@ GET http://localhost:8080/api/v1/posts?pageNo=0&pageSize=2&sortDir=asc
 GET http://localhost:8080/api/v1/posts?pageNo=1&pageSize=2&sortDir=asc
 
 ### GET ALL Posts pagination:
-GET http://localhost:8080/api/v1/posts?pageNo=0&pageSize=0&sortDir=asc
+GET http://localhost:8080/api/v1/posts?pageNo=0&pageSize=2&sortDir=asc&sortBy=title,id
 
 ### GET A Post by id:
 GET http://localhost:8080/api/v1/posts/1
@@ -77,8 +77,12 @@ Content-Type: application/json
 DELETE http://localhost:8080/api/v1/posts/1
 
 
-    //
-    //GET /api/v1/posts?pageNo=3&pageSize=25&sortDir=asc
-    //GET /api/v1/posts?pageNo=3&pageSize=25
-    //GET /api/v1/posts?pageNo=3
-    //GET /api/v1/posts
+### add a comment:
+POST http://localhost:8080/api/v1/posts/1/comments
+Content-Type: application/json
+
+{
+  "comment": "Nice Read",
+  "username": "moe",
+  "email": "moe@gmail.com"
+}

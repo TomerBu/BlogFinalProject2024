@@ -71,7 +71,7 @@ public class PostServiceImpl implements PostService {
                     pr.isLast(),
                     postListDto
             );
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new PaginationException(e.getMessage());
         }
     }
@@ -82,7 +82,9 @@ public class PostServiceImpl implements PostService {
         return modelMapper.map(post, PostResponseDTO.class);
     }
 
-    private Post getPostEntityOrThrow(long id) {
+
+    @Override
+    public Post getPostEntityOrThrow(long id) {
         return postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
     }

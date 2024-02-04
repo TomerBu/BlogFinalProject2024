@@ -3,6 +3,7 @@ package edu.tomerbu.blogfinalproject2024.service;
 import edu.tomerbu.blogfinalproject2024.dto.PostCreateDTO;
 import edu.tomerbu.blogfinalproject2024.dto.PostListDto;
 import edu.tomerbu.blogfinalproject2024.dto.PostResponseDTO;
+import edu.tomerbu.blogfinalproject2024.entity.Post;
 
 public interface PostService {
     PostResponseDTO createPost(PostCreateDTO dto);
@@ -14,4 +15,6 @@ public interface PostService {
     PostResponseDTO updatePost(long id, PostCreateDTO dto);
 
     PostResponseDTO deletePost(long id);
+
+    Post getPostEntityOrThrow(long id);
 }
