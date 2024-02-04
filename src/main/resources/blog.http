@@ -1,0 +1,26 @@
+### ADD A Post:
+POST http://localhost:8080/api/v1/posts
+Content-Type: application/json
+
+{
+  "title": "Spring Boot Lec 1",
+  "description": "The Basics of DI",
+  "content": "Annotations in spring boot"
+}
+
+### GET ALL Posts:
+GET http://localhost:8080/api/v1/posts
+
+
+### GET A Post by id:
+GET http://localhost:8080/api/v1/posts/1
+
+### PUT A POST
+PUT http://localhost:8080/api/v1/posts/1
+Content-Type: application/json
+
+{
+  "title": "Spring Boot Lec 1!!!",
+  "description": "The Basics of DI!!",
+  "content": "Annotations in spring boot!"
+}
