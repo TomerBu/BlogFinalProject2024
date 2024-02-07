@@ -1,7 +1,7 @@
 package edu.tomerbu.blogfinalproject2024.service;
 
 import edu.tomerbu.blogfinalproject2024.dto.PostCreateDTO;
-import edu.tomerbu.blogfinalproject2024.dto.PostListDto;
+import edu.tomerbu.blogfinalproject2024.dto.PostListDTO;
 import edu.tomerbu.blogfinalproject2024.dto.PostResponseDTO;
 import edu.tomerbu.blogfinalproject2024.entity.Post;
 import edu.tomerbu.blogfinalproject2024.error.PaginationException;
@@ -42,7 +42,7 @@ public class PostServiceImpl implements PostService {
 
 
     @Override  //getAllPosts(1, 10, "asc", "title", "author", "releaseDate")
-    public PostListDto getAllPosts(int pageNo, int pageSize, String sortDir, String... sortBy) {
+    public PostListDTO getAllPosts(int pageNo, int pageSize, String sortDir, String... sortBy) {
 
         try {
             //Direction from string ('asc')
@@ -62,7 +62,7 @@ public class PostServiceImpl implements PostService {
                             .map(p -> modelMapper.map(p, PostResponseDTO.class))
                             .toList();
 
-            return new PostListDto(
+            return new PostListDTO(
                     pr.getTotalElements(),
                     pr.getNumber(),
                     pr.getSize(),
@@ -86,7 +86,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post getPostEntityOrThrow(long id) {
         return postRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
+                .orElseThrow(
+                        ResourceNotFoundException
+                                .newInstance("Post", "id", id)
+                ); //()->new ResourceNotFoundException()
     }
 
     @Override

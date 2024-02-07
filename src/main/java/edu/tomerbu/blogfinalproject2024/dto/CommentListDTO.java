@@ -11,13 +11,6 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PostListDto {
-    private long totalPosts;
-    private int pageNo;
-    private int pageSize;
-    private int totalPages;
-
-    private boolean isFirst;
-    private boolean isLast;
-    private Collection<PostResponseDTO> posts;
+public class CommentListDTO {
+    private Collection<CommentResponseDTO> comments;
 }
