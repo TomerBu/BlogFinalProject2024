@@ -1,15 +1,17 @@
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
+Authorization: Basic admin password
 Content-Type: application/json
 
 {
-  "title": "Spring Boot Lec 1",
+  "title": "Spring Boot Lec 6",
   "description": "The Basics of DI",
   "content": "Annotations in spring boot"
 }
 
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
+Authorization: Basic admin password
 Content-Type: application/json
 
 {
@@ -20,6 +22,7 @@ Content-Type: application/json
 
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
+Authorization: Basic admin password
 Content-Type: application/json
 
 {
@@ -30,6 +33,7 @@ Content-Type: application/json
 
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
+Authorization: Basic admin password
 Content-Type: application/json
 
 {
@@ -40,6 +44,7 @@ Content-Type: application/json
 
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
+Authorization: Basic admin password
 Content-Type: application/json
 
 {
@@ -50,7 +55,7 @@ Content-Type: application/json
 
 ### GET ALL Posts:
 GET http://localhost:8080/api/v1/posts
-Authorization: Basic dXNlcjpwYXNzd29yZA==
+Authorization: Basic user password
 
 ### GET ALL Posts pagination:
 GET http://localhost:8080/api/v1/posts?pageNo=0&pageSize=2&sortDir=asc
@@ -66,6 +71,7 @@ GET http://localhost:8080/api/v1/posts/1
 
 ### PUT A POST
 PUT http://localhost:8080/api/v1/posts/1
+Authorization: Basic admin password
 Content-Type: application/json
 
 {
@@ -76,6 +82,7 @@ Content-Type: application/json
 
 ### Delete a post by id:
 DELETE http://localhost:8080/api/v1/posts/1
+Authorization: Basic admin password
 
 
 ### add a comment:
@@ -95,6 +102,7 @@ GET http://localhost:8080/api/v1/posts/1/comments
 
 ### UPDATE Comment By ID:
 PUT http://localhost:8080/api/v1/comments/1
+Authorization: Basic admin password
 Content-Type: application/json
 
 {
@@ -105,3 +113,4 @@ Content-Type: application/json
 
 ### Delete a comment:
 DELETE http://localhost:8080/api/v1/comments/1
+Authorization: Basic admin password

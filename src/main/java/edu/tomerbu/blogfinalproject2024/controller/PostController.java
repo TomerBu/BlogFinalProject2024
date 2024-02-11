@@ -8,6 +8,7 @@ import edu.tomerbu.blogfinalproject2024.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -42,6 +43,7 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PostResponseDTO> updatePostById(
             @PathVariable long id,
             @RequestBody @Valid PostCreateDTO dto
@@ -50,6 +52,7 @@ public class PostController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PostResponseDTO> createPost(
             @RequestBody @Valid PostCreateDTO dto,
             UriComponentsBuilder uriBuilder
@@ -61,6 +64,7 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PostResponseDTO> deletePost(@PathVariable long id){
         return ResponseEntity.ok(postService.deletePost(id));
     }
