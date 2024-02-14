@@ -33,7 +33,8 @@ public class SQLRunner implements CommandLineRunner {
                             "admin",
                             "tomerbu@gmail.com",
                             passwordEncoder.encode("Passw0rd1!"),
-                            Set.of(adminRole)
+                            Set.of(adminRole),
+                            Set.of()
                     )
             );
 
@@ -43,7 +44,8 @@ public class SQLRunner implements CommandLineRunner {
                             "user",
                             "moe@gmail.com",
                             passwordEncoder.encode("Passw0rd1!"),
-                            Set.of(userRole)
+                            Set.of(userRole),
+                            Set.of()
                     )
             );
         }

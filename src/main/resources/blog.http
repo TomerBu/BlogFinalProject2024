@@ -1,6 +1,6 @@
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
-Authorization: Basic admin password
+Authorization: Basic admin Passw0rd1!
 Content-Type: application/json
 
 {
@@ -114,3 +114,19 @@ Content-Type: application/json
 ### Delete a comment:
 DELETE http://localhost:8080/api/v1/comments/1
 Authorization: Basic admin password
+
+
+
+
+
+### Demo Authenticated user details:
+GET http://localhost:8080/api/v1/auth/me
+Authorization: Basic user Passw0rd1!
+
+
+
+
+
+
+
+

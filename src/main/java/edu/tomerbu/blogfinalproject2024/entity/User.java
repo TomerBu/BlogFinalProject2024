@@ -54,4 +54,8 @@ public class User {
             )
     )
     private Set<Role> roles;
+
+    //one user - many comment (oneToMany)
+    @OneToMany(mappedBy = "user")
+    private Set<Comment> comments = Set.of();
 }

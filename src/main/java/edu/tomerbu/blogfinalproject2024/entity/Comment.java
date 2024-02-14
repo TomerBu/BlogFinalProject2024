@@ -21,8 +21,10 @@ public class Comment {
 
     @Column(length = 512)
     private String comment;
-    private String username;
-    private String email;
+
+    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne
+    private User user;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

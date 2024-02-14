@@ -13,10 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class CommentRequestDTO {
-    @NotNull
-    private String username;
-    @NotNull
-    private String email;
 
     @NotNull
     @Size(min = 1, max = 512)
