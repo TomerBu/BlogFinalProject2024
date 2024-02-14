@@ -35,10 +35,6 @@ public class User {
     private String email;
 
     @NotNull
-//    @Pattern(
-//            regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*!@$%^&]).{8,32}$",
-//            message = "password must contain at least 1 lowercase letter,1 uppercase letter,1 digit and 1 special character"
-//    )
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)

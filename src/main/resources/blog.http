@@ -11,7 +11,7 @@ Content-Type: application/json
 
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
-Authorization: Basic admin password
+Authorization: Basic admin Passw0rd1!
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
-Authorization: Basic admin password
+Authorization: Basic admin Passw0rd1!
 Content-Type: application/json
 
 {
@@ -33,7 +33,7 @@ Content-Type: application/json
 
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
-Authorization: Basic admin password
+Authorization: Basic admin Passw0rd1!
 Content-Type: application/json
 
 {
@@ -44,7 +44,7 @@ Content-Type: application/json
 
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
-Authorization: Basic admin password
+Authorization: Basic admin Passw0rd1!
 Content-Type: application/json
 
 {
@@ -55,7 +55,7 @@ Content-Type: application/json
 
 ### GET ALL Posts:
 GET http://localhost:8080/api/v1/posts
-Authorization: Basic user password
+Authorization: Basic user Passw0rd1!
 
 ### GET ALL Posts pagination:
 GET http://localhost:8080/api/v1/posts?pageNo=0&pageSize=2&sortDir=asc
@@ -71,7 +71,7 @@ GET http://localhost:8080/api/v1/posts/1
 
 ### PUT A POST
 PUT http://localhost:8080/api/v1/posts/1
-Authorization: Basic admin password
+Authorization: Basic admin Passw0rd1!
 Content-Type: application/json
 
 {
@@ -82,51 +82,50 @@ Content-Type: application/json
 
 ### Delete a post by id:
 DELETE http://localhost:8080/api/v1/posts/1
-Authorization: Basic admin password
+Authorization: Basic admin Passw0rd1!
 
 
 ### add a comment:
 POST http://localhost:8080/api/v1/posts/1/comments
 Content-Type: application/json
-Authorization: Basic dXNlcjpwYXNzd29yZA==
+Authorization: Basic user Passw0rd1!
 
 {
-  "comment": "Nice Read",
-  "username": "moe",
-  "email": "moe@gmail.com"
+  "comment": "Nice Read"
 }
 
 
 ### GET comments by post id
 GET http://localhost:8080/api/v1/posts/1/comments
+Authorization: Basic user Passw0rd1!
 
 ### UPDATE Comment By ID:
 PUT http://localhost:8080/api/v1/comments/1
-Authorization: Basic admin password
+Authorization: Basic user Passw0rd1!
 Content-Type: application/json
 
 {
-  "comment": "Nice Read!!!",
-  "username": "moe",
-  "email": "moe@gmail.com"
+  "comment": "Nice Read!!!"
 }
 
 ### Delete a comment:
 DELETE http://localhost:8080/api/v1/comments/1
-Authorization: Basic admin password
-
-
-
+Authorization: Basic admin Passw0rd1!
 
 
 ### Demo Authenticated user details:
 GET http://localhost:8080/api/v1/auth/me
 Authorization: Basic user Passw0rd1!
 
+###register a user:
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "username": "avi",
+  "email": "avi@gmail.com",
+  "password": "Passw0rd1!"
+}
 
 
-
-
-
-
-
+###artist->albums->songs
