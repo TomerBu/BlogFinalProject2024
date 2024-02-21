@@ -122,10 +122,17 @@ POST http://localhost:8080/api/v1/auth/register
 Content-Type: application/json
 
 {
-  "username": "avi",
-  "email": "avi@gmail.com",
+  "username": "moe",
+  "email": "moshiko@gmail.com",
   "password": "Passw0rd1!"
 }
 
 
-###artist->albums->songs
+###login a user:
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "moe",
+  "password": "Passw0rd1!"
+}

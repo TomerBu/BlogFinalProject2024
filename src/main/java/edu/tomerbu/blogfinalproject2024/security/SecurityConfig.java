@@ -1,5 +1,11 @@
 package edu.tomerbu.blogfinalproject2024.security;
 
+import com.nimbusds.jose.jwk.JWKSet;
+import com.nimbusds.jose.jwk.RSAKey;
+import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
+import com.nimbusds.jose.jwk.source.JWKSource;
+import com.nimbusds.jose.proc.SecurityContext;
+import edu.tomerbu.blogfinalproject2024.config.RSAKeyProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +13,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -19,6 +29,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class SecurityConfig {
 
 
+    private final RSAKeyProperties keyProperties;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -38,5 +49,28 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
                 .httpBasic(withDefaults())
                 .build();
+    }
+
+    @Bean
+    JwtDecoder jwtDecoder() {
+        return NimbusJwtDecoder.withPublicKey(keyProperties.publicKey()).build();
+    }
+
+    @Bean
+    JwtEncoder jwtEncoder() {
+        RSAKey rsaKey = new RSAKey.Builder(keyProperties.publicKey())
+                .privateKey(keyProperties.privateKey())
+                .build();
+
+        //JSON Web Key (JWK) set. Represented by a JSON object that contains an array of JSON Web Keys
+        var jwKeySet = new JWKSet(rsaKey);
+
+        //JSON Web Key (JWK) source backed by an immutable JWK set.
+        //the security context is used to pass additional parameters to the JWK source, such as the JWS algorithm restrictions
+        JWKSource<SecurityContext> jwkSource = new ImmutableJWKSet<>(jwKeySet);
+
+        //the encoder requires a JWKSource and a SecurityContext
+        //finally we can create the encoder:
+        return new NimbusJwtEncoder(jwkSource);
     }
 }

@@ -2,10 +2,7 @@ package edu.tomerbu.blogfinalproject2024.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
 
-
-@ConfigurationProperties(prefix = "rsa")
-public record RSAKeyProperties(RSAPublicKey publicKey, RSAPrivateKey privateKey) {
+@ConfigurationProperties(prefix = "arik")
+public record ArikProps(String firstName, String lastName) {
 }
