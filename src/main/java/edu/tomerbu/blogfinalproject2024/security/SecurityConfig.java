@@ -17,9 +17,10 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static org.springframework.security.config.Customizer.withDefaults;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
@@ -30,6 +31,7 @@ public class SecurityConfig {
 
 
     private final RSAKeyProperties keyProperties;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -47,7 +49,17 @@ public class SecurityConfig {
                         }
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
-                .httpBasic(withDefaults())
+                .oauth2ResourceServer(auth -> auth.jwt(jwtConfigurer -> {
+                    var jwtAuthenticationConverter = new JwtAuthenticationConverter();
+
+                    var grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+
+                    grantedAuthoritiesConverter.setAuthorityPrefix("");
+
+                    jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
+                    jwtConfigurer.jwtAuthenticationConverter(jwtAuthenticationConverter);
+                }))
+                //.httpBasic(withDefaults())
                 .build();
     }
 

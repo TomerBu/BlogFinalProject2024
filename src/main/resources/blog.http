@@ -1,17 +1,17 @@
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
-Authorization: Basic admin Passw0rd1!
+Authorization: bearer {{adminJWT}}
 Content-Type: application/json
 
 {
-  "title": "Spring Boot Lec 6",
+  "title": "Spring Boot Lec 18",
   "description": "The Basics of DI",
   "content": "Annotations in spring boot"
 }
 
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
-Authorization: Basic admin Passw0rd1!
+Authorization: bearer {{adminJWT}}
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
-Authorization: Basic admin Passw0rd1!
+Authorization: bearer {{adminJWT}}
 Content-Type: application/json
 
 {
@@ -33,18 +33,18 @@ Content-Type: application/json
 
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
-Authorization: Basic admin Passw0rd1!
+Authorization: bearer {{adminJWT}}
 Content-Type: application/json
 
 {
-  "title": "Spring Boot Lec 4",
-  "description": "The Basics of DI",
-  "content": "Annotations in spring boot"
+  "title": "",
+  "description": "",
+  "content": ""
 }
 
 ### ADD A Post:
 POST http://localhost:8080/api/v1/posts
-Authorization: Basic admin Passw0rd1!
+Authorization: bearer {{adminJWT}}
 Content-Type: application/json
 
 {
@@ -55,23 +55,27 @@ Content-Type: application/json
 
 ### GET ALL Posts:
 GET http://localhost:8080/api/v1/posts
-Authorization: Basic user Passw0rd1!
+Authorization: bearer {{userJWT}}
 
 ### GET ALL Posts pagination:
-GET http://localhost:8080/api/v1/posts?pageNo=0&pageSize=2&sortDir=asc
+GET http://localhost:8080/api/v1/posts?pageNo=0&pageSize=-1&sortDir=asc
+Authorization: bearer {{adminJWT}}
 
 ### GET ALL Posts pagination:
 GET http://localhost:8080/api/v1/posts?pageNo=1&pageSize=2&sortDir=asc
+Authorization: bearer {{userJWT}}
 
 ### GET ALL Posts pagination:
 GET http://localhost:8080/api/v1/posts?pageNo=0&pageSize=2&sortDir=asc&sortBy=title,id
+Authorization: bearer {{userJWT}}
 
 ### GET A Post by id:
 GET http://localhost:8080/api/v1/posts/1
+Authorization: bearer {{userJWT}}
 
 ### PUT A POST
 PUT http://localhost:8080/api/v1/posts/1
-Authorization: Basic admin Passw0rd1!
+Authorization: bearer {{adminJWT}}
 Content-Type: application/json
 
 {
@@ -82,13 +86,13 @@ Content-Type: application/json
 
 ### Delete a post by id:
 DELETE http://localhost:8080/api/v1/posts/1
-Authorization: Basic admin Passw0rd1!
+Authorization: bearer {{adminJWT}}
 
 
 ### add a comment:
 POST http://localhost:8080/api/v1/posts/1/comments
 Content-Type: application/json
-Authorization: Basic user Passw0rd1!
+Authorization: bearer {{userJWT}}
 
 {
   "comment": "Nice Read"
@@ -97,11 +101,11 @@ Authorization: Basic user Passw0rd1!
 
 ### GET comments by post id
 GET http://localhost:8080/api/v1/posts/1/comments
-Authorization: Basic user Passw0rd1!
+Authorization: bearer {{userJWT}}Ï
 
 ### UPDATE Comment By ID:
 PUT http://localhost:8080/api/v1/comments/1
-Authorization: Basic user Passw0rd1!
+Authorization: bearer {{userJWT}}
 Content-Type: application/json
 
 {
@@ -110,12 +114,13 @@ Content-Type: application/json
 
 ### Delete a comment:
 DELETE http://localhost:8080/api/v1/comments/1
-Authorization: Basic admin Passw0rd1!
+Authorization: bearer {{adminJWT}}
 
 
 ### Demo Authenticated user details:
 GET http://localhost:8080/api/v1/auth/me
-Authorization: Basic user Passw0rd1!
+Authorization: bearer {{userJWT}}
+
 
 ###register a user:
 POST http://localhost:8080/api/v1/auth/register
@@ -128,11 +133,21 @@ Content-Type: application/json
 }
 
 
-###login a user:
+###login as admin:
 POST http://localhost:8080/api/v1/auth/login
 Content-Type: application/json
 
 {
-  "username": "moe",
+  "username": "admin",
+  "password": "Passw0rd1!"
+}
+
+
+###login as user:
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "user",
   "password": "Passw0rd1!"
 }

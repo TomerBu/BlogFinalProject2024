@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class PostCreateDTO {
     //title, description, content
     @NotNull
-    @Size(min = 2, max = 128)
+    @Size(min = 2, max = 128, message = "title must be between 2-128 chars")
     private String title;
 
     @NotNull

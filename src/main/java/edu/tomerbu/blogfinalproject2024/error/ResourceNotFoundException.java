@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.function.Supplier;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class ResourceNotFoundException extends RuntimeException {
+public class ResourceNotFoundException extends BlogException {
     public ResourceNotFoundException(String entityName, String property, Object value) {
 
         super("Entity %s with %s=%s Not Found".formatted(entityName, property, value));
