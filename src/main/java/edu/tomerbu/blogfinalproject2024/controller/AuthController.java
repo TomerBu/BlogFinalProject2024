@@ -6,6 +6,7 @@ import edu.tomerbu.blogfinalproject2024.dto.LoginResponseDTO;
 import edu.tomerbu.blogfinalproject2024.dto.UserRequestDto;
 import edu.tomerbu.blogfinalproject2024.dto.UserResponseDto;
 import edu.tomerbu.blogfinalproject2024.service.AuthService;
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,7 @@ public class AuthController {
         return ResponseEntity.created(uriBuilder.path("/api/v1/auth/login").build().toUri()).body(authService.register(dto));
     }
 
+    @Hidden
     @GetMapping("/me")
     public ResponseEntity<Map<String, Object>> userDetails(Authentication authentication) {
         return ResponseEntity.ok(

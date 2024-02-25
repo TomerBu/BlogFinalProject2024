@@ -5,6 +5,7 @@ import edu.tomerbu.blogfinalproject2024.dto.CommentListDTO;
 import edu.tomerbu.blogfinalproject2024.dto.CommentRequestDTO;
 import edu.tomerbu.blogfinalproject2024.dto.CommentResponseDTO;
 import edu.tomerbu.blogfinalproject2024.service.CommentService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
+@SecurityRequirement(name = "Bearer Authentication")
 public class CommentController {
     //props:
     private final CommentService commentService;
