@@ -3,11 +3,12 @@ package edu.tomerbu.blogfinalproject2024.dto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
 
 
 public record UserRequestDto(
         @NotNull
-        @Size(min = 2)
+        @Size(min = 2, max = 20)
         String username,
 
         @NotNull

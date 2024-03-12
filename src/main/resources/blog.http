@@ -4,7 +4,7 @@ Authorization: bearer {{adminJWT}}
 Content-Type: application/json
 
 {
-  "title": "Spring Boot Lec 18",
+  "title": "Spring Boot Lec 181",
   "description": "The Basics of DI",
   "content": "Annotations in spring boot"
 }
