@@ -57,7 +57,8 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public UserResponseDto register(UserRequestDto dto) {
         //check that the user does not exist email/username:
-        userRepository.findUserByUsernameIgnoreCaseOrEmailIgnoreCase(dto.username(), dto.email()).ifPresent((u) -> {
+        //check that the user does not exist email/username:
+        userRepository.findUserByUsernameIgnoreCaseOrEmailIgnoreCase(dto.username(), dto.email()).stream().findAny().ifPresent(u -> {
             throw new UserAlreadyExistsException(u.getUsername(), u.getEmail());
         });
 

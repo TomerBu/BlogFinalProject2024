@@ -4,6 +4,7 @@ package edu.tomerbu.blogfinalproject2024.error;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -84,6 +85,18 @@ public class BlogExceptionHandler {
         return ResponseEntity.badRequest().body(map);
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<Map<String, Object>>
+    handle(
+            UsernameNotFoundException e,
+            HandlerMethod method,
+            HttpServletRequest request
+
+    ) {
+        var map = new HashMap<>(getExcMap(e, method, request));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(map);
+    }
 
     //@Order(10)
     //CATCH ALL:
